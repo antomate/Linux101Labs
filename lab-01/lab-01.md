@@ -66,17 +66,23 @@ cd template
 2. Clone a repo with Azure Linux VM template, display the template with less and search for occurence of "Deny"
 
 ```bash
-git clone https://github.com/antomate/vscode_profile.git
-cd ...
-ls -l
-less ...
+git clone https://github.com/antomate/Linux101Labs.git
+find ~ -name "*.json"
+cd Linux101Labs/lab-01
+cat Linux101Labs/lab-01/vmTemplate.parameters.json
+less Linux101Labs/lab-01/vmTemplate.json
 /Deny
 q
 ```
 
 ## Edit an Azure VM template
 
-Edit an Azure VM template to enable inbound TCP22 for your public IP address and add your SSH public key
+Edit an Azure VM template to enable inbound TCP22 ("Allow" instead of "Deny") for your public IP address and add your SSH public key
+
+```bash
+cat ~/.ssh/id_rsa.pub
+
+```
 
 ## Install Azure Cli
 
