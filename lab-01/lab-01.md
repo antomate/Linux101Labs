@@ -11,11 +11,13 @@ More information about WSL here : https://blogs.msdn.microsoft.com/wsl/2016/06/1
 0. Open a PowerShell session as administrator
 
 1. Enable WSL Windows feature (will require reboot)
+
 ```PowerShell
 > Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux"
 ```
 
 2. After reboot, Open a PowerShell session as administrator and install Ubuntu 18.04 Linux distribution
+
 ```PowerShell
 > New-Item -path "c:\" -name "distro" -ItemType "directory"
 > Set-Location C:\distro\
@@ -28,6 +30,7 @@ More information about WSL here : https://blogs.msdn.microsoft.com/wsl/2016/06/1
 ```
 
 3. Instantiate and run Ubuntu
+
 ```bash
 > ubuntu1804.exe
 ```
@@ -63,25 +66,72 @@ $ mkdir template
 $ cd template
 ```
 
-2. Clone a repo with Azure Linux VM template, display the template with less and search for occurence of "Deny"
+2. Clone a repo with Azure Linux VM template and look for the ".json" template files
 
 ```bash
 $ git clone https://github.com/antomate/Linux101Labs.git
 $ find ~ -name "*.json"
+```
+
+3. Display the *template parameter* file with **cat** and the *template* with less and search for occurences of "securityRules"
+
+```bash
 $ cat Linux101Labs/lab-01/vmTemplate.parameters.json
 $ less Linux101Labs/lab-01/vmTemplate.json
-/Deny
+```
+
+```less
+/securityRules
 q
 ```
 
 ## Edit an Azure VM template
 
-Edit an Azure VM template to enable inbound TCP22 ("Allow" instead of "Deny") for your public IP address and add your SSH public key
+Edit an Azure VM template to perform the following modification :
+
+1. Modify the *template* file using **nano** to enable inbound TCP22 for your public IP address
+
+```bash
+$ wget 'https://api.ipify.org?format=json' -O myip
+$ cat myip
+$ nano Linux101Labs/lab-01/vmTemplate.json
+```
+
+```nano
+[Ctrl] w
+securityRules
+[Alt] r
+Deny
+[Enter]
+Allow
+[Alt] r
+Internet
+[Enter]
+<Your IP>
+[Enter]
+[Ctrl] o
+[Enter]
+[Ctrl] x
+```
+
+2. Add your SSH public key to the *template parameter* file using **vim** to open both files at the same time and using the split screen feature
+
+3. Change the "UserIndex" in the *template parameter* file to your trainee index
 
 ```bash
 $ cat ~/.ssh/id_rsa.pub
-$ nano Linux101Labs/lab-01/vmTemplate.parameters.json
-$ nano Linux101Labs/lab-01/vmTemplate.json
+$ vim ~/.ssh/id_rsa.pub Linux101Labs/lab-01/vmTemplate.parameters.json
+```
+
+```vim
+:sp
+<select and right-click>
+:bn
+a
+<or right-click>
+[Echap]
+wq
+wq
 ```
 
 ## Install Azure Cli
@@ -101,6 +151,7 @@ $ sudo apt install azure-cli
 ## Update distribution
 
 Elevate using "sudo" to update package list. See the list of packages availabale for upgrade and upgrade them all.
+
 ```Bash
 $ sudo apt update
 $ apt list --upgradable
