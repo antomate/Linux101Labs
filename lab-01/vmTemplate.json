@@ -117,7 +117,7 @@
             "location": "[resourceGroup().location]",
             "properties": {
                 "dnsSettings": {
-                    "domainNameLabel": "[variables('vmName')]"
+                    "domainNameLabel": "[toLower(variables('vmName'))]"
                 },
                 "idleTimeoutInMinutes": 30,
                 "publicIPAllocationMethod": "[variables('publicIPAddressType')]"
