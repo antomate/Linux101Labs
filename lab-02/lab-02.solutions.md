@@ -57,7 +57,7 @@ $ sudo mount /dev/vg1/lv2 /data2
 $ df -h
 ```
 
-## Create a blob file and mount it as a loop device pesistently using **fstab**
+## Create and mount a loop device pesistently
 
 1. Solution
 
@@ -90,7 +90,7 @@ $ df -h
 $ echo "/dev/loop0p1      /mntpoint      ext4      defaults      0 0" | sudo tee -a /etc/fstab
 ```
 
-## Verify network configuration for all NICs
+## Verify network configuration
 
 1. Solution
 

@@ -22,7 +22,7 @@ Use the SSH connection string to connect to the VM and confirm when prompted to 
 
 4. Create two folders "data1" and "data2" at the root of the filesystem, then mount respectively "lv1" and "lv2" to those mounting points. Finally show volumes informarion using **df**.
 
-## Create a blob file and mount it as a loop device pesistently using **fstab**
+## Create and mount a loop device pesistently
 
 1. Create a raw 1Go image file filled with zeros using **dd** then using **losetup**, initiate a loopback device "loop0" from the image file and display the loopback device information.
 
@@ -36,7 +36,7 @@ Use the SSH connection string to connect to the VM and confirm when prompted to 
 
 4. Show the volumes informarion using **df** and create en new entry in **fstab** to peristently mount the loopback device.
 
-## Verify network configuration for all NICs
+## Verify network configuration
 
 1. Display local resolution entrees and DNS resolver configuration.
 
