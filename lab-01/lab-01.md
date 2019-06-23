@@ -71,6 +71,6 @@ $ sudo apt update
 $ sudo apt install azure-cli
 ```
 
-## Update distribution
+## Update packages
 
 Elevate using **sudo** to update package list. Inspect the list of packages availabale for upgrade and upgrade them all.
