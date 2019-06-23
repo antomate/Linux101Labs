@@ -105,7 +105,7 @@ $ sudo apt update
 $ sudo apt install azure-cli
 ```
 
-## Update distribution
+## Update packages
 
 ```Bash
 $ sudo apt update
