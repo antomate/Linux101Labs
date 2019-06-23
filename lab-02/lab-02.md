@@ -1,6 +1,6 @@
 # LAB 02
 
-This lab focus on deploying a Linux VM in Azure based on the temlate previously configured in "lab-01". SSH will be used to connect to this VM and configure its storage using **LVM**, "loop devices" and **FSTAB** and finally create a cron job to update daily the list of packages.
+This lab focus on deploying a Linux VM in Azure based on the temlate previously configured in "lab-01". SSH will be used to connect to this VM and configure its storage using **LVM**, "loop devices" and **FSTAB** and finally prepare cron jobs.
 
 ## Login to Azure and deploy the VM template
 
