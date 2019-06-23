@@ -39,106 +39,29 @@ This will instantiate Ubuntu (can take a few minutes), you will be prompted to c
 
 ## Prepare SSH credentials
 
-1. Create the ".ssh" directory, verify its default permissions and change them (this step is only for lab purpose as the .ssh dir is created by ssh-keygen if it does not exist)
+1. Create the ".ssh" directory, verify its default permissions and change them to "rwx------" then list the result with (this step is only for lab purpose as the .ssh dir is created by ssh-keygen if it does not exist).
 
-```bash
-$ mkdir .ssh
-$ ls -al
-$ chmod 700 .ssh
-$ ls -al
-```
-
-Note that the **ls** command is used with "-a" to show hidden folders and "-l" to show permissions
-
-2. Generate a SSH key pair with the default value for the path and no password (since you're Linux environment is not shared). List the content of the ~/.ssh directory and verify the permissions on the key files.
-
-```bash
-$ ssh-keygen
-$ ls -l ~/.ssh
-```
+2. Generate a SSH key pair with the default value for the path and no password (since you're Linux environment is not shared) then List the content of the ~/.ssh directory and verify the permissions on the key files.
 
 ## Download an Azure Linux VM template
 
-1. Create a target directory for the template and change to that directory
+1. Create a target directory for the template and change current working directory to that new directory.
 
-```bash
-$ mkdir template
-$ cd template
-```
+2. Clone the "https://github.com/antomate/Linux101Labs.git" repo with **Git** and look for the ".json" template files containing a Azure Linux VM template and its parameters.
 
-2. Clone a repo with Azure Linux VM template and look for the ".json" template files
-
-```bash
-$ git clone https://github.com/antomate/Linux101Labs.git
-$ find ~ -name "*.json"
-```
-
-3. Display the *template parameter* file with **cat** and the *template* with less and search for occurences of "securityRules"
-
-```bash
-$ cat Linux101Labs/lab-01/vmTemplate.parameters.json
-$ less Linux101Labs/lab-01/vmTemplate.json
-```
-
-```less
-/securityRules
-q
-```
+3. Display the *template parameter* file with **cat** and the *template* with **less** and search for occurences of "securityRules".
 
 ## Edit an Azure VM template
 
 Edit an Azure VM template to perform the following modification :
 
-1. Modify the *template* file using **nano** to enable inbound TCP22 for your public IP address
+1. Modify the *template* file using **nano** to enable inbound TCP22 for your public IP address.
 
-```bash
-$ wget 'https://api.ipify.org?format=json' -O myip
-$ cat myip
-$ nano Linux101Labs/lab-01/vmTemplate.json
-```
-
-```nano
-[Ctrl] w
-securityRules
-[Alt] r
-Deny
-[Enter]
-Allow
-[Alt] r
-Internet
-[Enter]
-<Your IP>
-[Enter]
-[Ctrl] o
-[Enter]
-[Ctrl] x
-```
-
-2. Add your SSH public key to the *template parameter* file using **vim** to open both files at the same time and using the split screen feature
-
-3. Change the "UserIndex" in the *template parameter* file to your trainee index
-
-```bash
-$ cat ~/.ssh/id_rsa.pub
-$ vim ~/.ssh/id_rsa.pub Linux101Labs/lab-01/vmTemplate.parameters.json
-```
-
-```vim
-:sp
-<select and right-click>
-:bn
-a
-<or right-click>
-[Echap]
-wq
-wq
-```
+2. Change the "UserIndex" to your trainee index and add your SSH public key to the *template parameter* file using **vim** to open both files at the same time and using the split screen feature.
 
 ## Install Azure Cli
 
-1. Install pre-requisites to Azure Cli, including
-
-The installation consist of adding the Microsoft *GPG* signing key to the trusted ones and add the *Azure Cli* distribution specific repository url to the list of available repository for *apt*.
+Install Azure Cli, following official documentation. The installation consist of adding the Microsoft *GPG* signing key to the trusted ones and add the **Azure Cli** distribution specific repository url to the list of available repository for **apt**.
 
 ```Bash
 $ curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
@@ -150,10 +73,4 @@ $ sudo apt install azure-cli
 
 ## Update distribution
 
-Elevate using "sudo" to update package list. See the list of packages availabale for upgrade and upgrade them all.
-
-```Bash
-$ sudo apt update
-$ apt list --upgradable
-$ apt upgrade
-```
+Elevate using **sudo** to update package list. Inspect the list of packages availabale for upgrade and upgrade them all.
