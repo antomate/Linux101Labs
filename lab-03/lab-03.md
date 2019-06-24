@@ -2,41 +2,61 @@
 
 This lab focus on managing users and groups as well as well as process management and monitoring of the server's activity.
 
-## Create a new user and initiate its password (user must change its password at next logon)
+## Managing users and groups
+
+1. Show your user configuration, group membership and credentials information with **cat**. Note that your password has not been defined '!' so technically the account shoud be locked!
 
 ```Bash
-$ whoami
-$ cat /etc/passwd
-$ cat /etc/group
-$ sudo cat /etc/shadow
-$ sudo useradd -m mrcool
-$ cat /etc/passwd
-$ sudo cat /etc/shadow
-$ sudo passwd mrcool
-$ sudo cat /etc/shadow
-$ id mrcool
+$ cat /etc/passwd | grep "adminuser"
+$ cat /etc/group | grep "adminuser"
+$ sudo cat /etc/shadow | grep "adminuser"
 ```
 
-## Create a new group and Add the new user to the new group
+2. Create a new user "usertemp" using **useradd** and show its user configuration and credentials information using **cat**. Then initiate its password with **passwd**. Show again its credentials information using **cat** and note the difference (user would have to change its password at next logon).
 
 ```Bash
-$ id mrcool
-$ groups mrcool
-$ sudo groupadd cool
-$ sudo usermod -a -G cool mrcool
-$ id mrcool
-$ groups mrcool
+$ sudo useradd -m usertemp
+$ cat /etc/passwd | grep "usertemp"
+$ sudo cat /etc/shadow | grep "usertemp"
+$ sudo passwd usertemp
+$ sudo cat /etc/shadow | grep "usertemp"
 ```
 
-## Run a background job and monitor its status
+3. Create a new group "grouptemp" using **groupadd** then add the new user "usertemp" to the this group using **usermod**. Finally display usertemp group membership
 
 ```Bash
-$ ps -elf
-$ ps -auxf
+$ sudo groupadd grouptemp
+$ sudo usermod -a -G grouptemp usertemp
+$ id usertemp
+```
+
+4. Remove the user "usertemp" including its home directory using **userdel** and delete the group "grouptemp" using **groupdel**.
+
+```Bash
+$ sudo userdel -r usertemp
+$ sudo groupdel grouptemp
+```
+
+## Managing processes and daemons
+
+1. Using **ps** and **pstree** find the parent process for your current bash session
+
+```Bash
+$ ps -elf | grep "bash"
+$ ps -elf | grep "<bash PPID>"
 $ pstree -p
-$ dd if=/dev/urandom of=/dev/null &
-$ pstree -p
-$ killall -SIGKILL dd
+```
+
+2. Start a background task using "&" at the end of a **ping** command. Note the PID of the background task and use it to stop the process with **kill**.
+
+```Bash
+$ ping avanade.com &
+$ kill -SIGKILL <PID>
+```
+
+3. 
+
+```Bash
 $ systemctl list-unit-files --type=service --state=enabled
 $ systemctl status lxd-containers.service
 $ sudo systemctl restart lxd-containers.service
@@ -49,7 +69,5 @@ $ iostat -k
 $ netstat
 ```
 
-## Change a service configuration and restart it
 
-
-## Build a C application with make
+## Build a C application
