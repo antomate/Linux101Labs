@@ -12,7 +12,7 @@ This lab focus on deploying a Linux VM in Azure based on the temlate previously 
 
 Use the SSH connection string to connect to the VM and confirm when prompted to add your VM fingerprint to the known hosts.
 
-## Create logical volumes, format and mount
+## Create logical volumes, format and mount pesistently
 
 1. List the available volumes and notice "sdc" and "sdd" are raw disk with no partitions.
 
@@ -20,9 +20,9 @@ Use the SSH connection string to connect to the VM and confirm when prompted to 
 
 3. Format the two new volumes "lv1" and "lv2" in "ext4" using **mkfs**, then show volumes informarion using **df**.
 
-4. Create two folders "data1" and "data2" at the root of the filesystem, then mount respectively "lv1" and "lv2" to those mounting points. Finally show volumes informarion using **df**.
+4. Create two folders "data1" and "data2" at the root of the filesystem, then mount respectively "lv1" and "lv2" to those mounting points. Finally show volumes informarion using **df** and create two new entries in **fstab** to peristently mount "data1" and "data2".
 
-## Create and mount a loop device pesistently
+## Create and mount a loop device
 
 1. Create a raw 1Go image file filled with zeros using **dd** then using **losetup**, initiate a loopback device "loop0" from the image file and display the loopback device information.
 
@@ -32,9 +32,7 @@ Use the SSH connection string to connect to the VM and confirm when prompted to 
     - Format type : "ext4" (note that this will not create and format the filesystem)
     - Partition offset : 1Mb - 1024Mb
 
-3. Format the "loop0p1" partition in "ext4" using **mkfs**, then create a "mntpoint" directory at the root of the filesystem to finally mount the "loop0p1" partition to that directory.
-
-4. Show the volumes informarion using **df** and create en new entry in **fstab** to peristently mount the loopback device.
+3. Format the "loop0p1" partition in "ext4" using **mkfs**, then create a "mntpoint" directory at the root of the filesystem to finally mount the "loop0p1" partition to that directory. Show the volumes informarion using **df**.
 
 ## Verify network configuration
 

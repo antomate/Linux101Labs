@@ -23,7 +23,7 @@ Solution
 $ ssh adminuser<YourIndex>@linux101Lab01<YourIndex>.westeurope.cloudapp.azure.com
 ```
 
-## Create logical volumes, format and mount
+## Create logical volumes, format and mount pesistently
 
 1. Solution
 
@@ -45,19 +45,20 @@ $ sudo lvcreate --name lv2 --size 5G vg1
 ```Bash
 $ sudo mkfs -t ext4 /dev/vg1/lv1
 $ sudo mkfs -t ext4 /dev/vg1/lv2
-$ df -h
 ```
 
 4. Solution
 
 ```Bash
 $ sudo mkdir /data1 /data2
-$ sudo mount /dev/vg1/lv1 /data1 
+$ sudo mount /dev/vg1/lv1 /data1
 $ sudo mount /dev/vg1/lv2 /data2
+$ echo "/dev/vg1/lv1      /data1      ext4      defaults      0 0" | sudo tee -a /etc/fstab
+$ echo "/dev/vg1/lv2      /data2      ext4      defaults      0 0" | sudo tee -a /etc/fstab
 $ df -h
 ```
 
-## Create and mount a loop device pesistently
+## Create and mount a loop device
 
 1. Solution
 
@@ -81,13 +82,6 @@ $ sudo fdisk -l /dev/loop0
 $ sudo mkfs.ext4 /dev/loop0p1
 $ sudo mkdir /mntpoint
 $ sudo mount /dev/loop0p1 /mntpoint
-```
-
-4. Solution
-
-```Bash
-$ df -h
-$ echo "/dev/loop0p1      /mntpoint      ext4      defaults      0 0" | sudo tee -a /etc/fstab
 ```
 
 ## Verify network configuration
