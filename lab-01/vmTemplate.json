@@ -34,6 +34,7 @@
         "nic1Name": "nic1",
         "nic2Name": "nic2",
         "nsgName": "[concat(variables('vmName'), 'nsg')]",
+        "nsgId": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]",
         "publicIPAddressName": "[concat(variables('vmName'), 'pip')]",
         "publicIPAddressType": "Dynamic",
         "publicIPAddressId": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]",
@@ -62,6 +63,9 @@
             "name": "[variables('vnetName')]",
             "apiVersion": "[variables('apiVersion')]",
             "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[variables('nsgId')]"
+            ],
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -72,13 +76,19 @@
                     {
                         "name": "[variables('subnet1Name')]",
                         "properties": {
-                            "addressPrefix": "[variables('subnet1Prefix')]"
+                            "addressPrefix": "[variables('subnet1Prefix')]",
+                            "networkSecurityGroup": {
+                                "id": "[variables('nsgId')]"
+                            }
                         }
                     },
                     {
                         "name": "[variables('subnet2Name')]",
                         "properties": {
-                            "addressPrefix": "[variables('subnet2Prefix')]"
+                            "addressPrefix": "[variables('subnet2Prefix')]",
+                            "networkSecurityGroup": {
+                                "id": "[variables('nsgId')]"
+                            }
                         }
                     }
                 ]
@@ -89,9 +99,7 @@
             "name": "[variables('nsgName')]",
             "apiVersion": "[variables('apiVersion')]",
             "location": "[resourceGroup().location]",
-            "dependsOn": [
-                "[variables('vnetId')]"
-            ],
+            "dependsOn": [],
             "properties": {
                 "securityRules": [
                     {
