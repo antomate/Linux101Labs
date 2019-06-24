@@ -39,13 +39,13 @@ This will instantiate Ubuntu (can take a few minutes), you will be prompted to c
 
 ## Prepare SSH credentials
 
-1. Create the ".ssh" directory, verify its default permissions and change them to "rwx------" then list the result with (this step is only for lab purpose as the .ssh dir is created by ssh-keygen if it does not exist).
+1. Create the ".ssh" directory with **mkdir**, verify its default permissions with **ls** and change them to "rwx------" using **chmod**. Then show the result with **ls** (this step is only for lab purpose as the .ssh dir is created by ssh-keygen if it does not exist).
 
 2. Generate a SSH key pair with the default value for the path and no password (since you're Linux environment is not shared) then List the content of the ~/.ssh directory and verify the permissions on the key files.
 
 ## Download an Azure Linux VM template
 
-1. Create a target directory for the template and change current working directory to that new directory.
+1. Create a target directory for the template with **mkdir** and change current working directory to that new directory using **cd**.
 
 2. Clone the "https://github.com/antomate/Linux101Labs.git" repo with **Git** and look for the ".json" template files containing a Azure Linux VM template and its parameters.
 
@@ -73,4 +73,4 @@ $ sudo apt install azure-cli
 
 ## Update packages
 
-Elevate using **sudo** to update package list. Inspect the list of packages availabale for upgrade and upgrade them all.
+Elevate using **sudo** to update package list with **apt**. Inspect the list of packages availabale for upgrade and upgrade them all.

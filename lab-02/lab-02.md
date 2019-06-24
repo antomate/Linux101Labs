@@ -6,7 +6,7 @@ This lab focus on deploying a Linux VM in Azure based on the temlate previously 
 
 1. Login to Azure Resource Manager with **az**.
 
-2. Create a new resource group "Linux101Labs" and deploy the VM template. To find the output of the template with the ssh connection string, pipe the result to a grep and look for "ssh ".
+2. Create a new resource group "Linux101Labs" and deploy the VM template. To find the output of the template with the ssh connection string, pipe the result to a **grep** and look for "ssh ".
 
 ## Enter remote session on the new VM
 
@@ -14,13 +14,13 @@ Use the SSH connection string to connect to the VM and confirm when prompted to 
 
 ## Create logical volumes, format and mount pesistently
 
-1. List the available volumes and notice "sdc" and "sdd" are raw disk with no partitions.
+1. List the available volumes using **lsblk** and notice "sdc" and "sdd" are raw disk with no partitions.
 
-2. Declare physical volumes for devices "sdc" and "sdd", then create a volume group "vg1" from those two devices and finally create two logical volume from the "vg1" volume group, "lv1" of 30Go and "lv2" of 5Go.
+2. Declare physical volumes for devices "sdc" and "sdd" using **pvcreate**, then create a volume group "vg1" from those two devices suing **vgcreate**. Finally use **lvcreate** to create two logical volume from the "vg1" volume group, "lv1" of 30Go and "lv2" of 5Go.
 
 3. Format the two new volumes "lv1" and "lv2" in "ext4" using **mkfs**, then show volumes informarion using **df**.
 
-4. Create two folders "data1" and "data2" at the root of the filesystem, then mount respectively "lv1" and "lv2" to those mounting points. Finally show volumes informarion using **df** and create two new entries in **fstab** to peristently mount "data1" and "data2".
+4. Create two folders "data1" and "data2" at the root of the filesystem, then mount respectively "lv1" and "lv2" to those mounting points using **mount**. Finally show volumes informarion using **df** and create two new entries in **fstab** to peristently mount "data1" and "data2".
 
 ## Create and mount a loop device
 
@@ -36,9 +36,9 @@ Use the SSH connection string to connect to the VM and confirm when prompted to 
 
 ## Verify network configuration
 
-1. Display local resolution entrees and DNS resolver configuration.
+1. Display local resolution entrees and DNS resolver configuration using **cat**.
 
-2. Show network configuration and known routes for both ethernet interfaces.
+2. Show network configuration and known routes for both ethernet interfaces using **ip**.
 
 3. Use **mtr** to show on going statistics for each network hops to reach "avanade.com".
 
@@ -46,7 +46,7 @@ Use the SSH connection string to connect to the VM and confirm when prompted to 
 
 1. List existing **crontab** jobs for current user and if necessary initiate **crontab** and select your default editor.
 
-2. Create a task to backup the "imagefile" created previously to a compresses archive. The task must run every sunday at 0:00.
+2. Create a task to backup the "imagefile" created previously to a compresses archive using **tar**. The task must run every sunday at 0:00.
 
 3. List existing **crontab** jobs for root and if necessary initiate **crontab** and select your default editor.
 
