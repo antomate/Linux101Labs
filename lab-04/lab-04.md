@@ -1,11 +1,19 @@
-- Depuis WSL ou Windows, créer des scripts batch pour :
-	1. Créer un utilisateur et un groupe pour run as du service web (gestion user et groupe)
-	2. Télécharger et configurer Ngnix (package manager+)
-	3. Modifier le compte par défault pour le run de Ngnix
-	3. Télécharger une page d'accueil depuis un URI
-- Assembler les différents scripts + uploader pour mise à disposition custom script
-- Depuis WSL Modifier le template VM existant :
-	- Ajouter une règle pour autoriser le port 80 en inbound depuis le tag "Internet"
-	- Ajouter au template l'extension custom script (pointe vers un fichier pas encore créé sur URI)
-- Déployer le template de VM et se connecter sur son port 80 pour afficher le site
-- Se connecter en SSH et éditer la page d'accueil pour changer le message de bienvenu et redémarer le service web
+# LAB 04
+
+The purpose of this lab is to work in team of two ro three people and achieve the following :
+
+1. Develop a script to perform the following actions :
+	- Install Ngnix
+	- Create e new user
+	- Modify the servoce configuration for Ngnix to run as the new user
+	- Restart Ngnix to apply the new configuration
+	- Download a custom home page to replace the default one
+
+2. Upload the script to a Storage Account within a container with public access
+3.  Modify the template of the VM deployed in **lab-02** to :
+	- Authorized "Internet" inbound on port 80
+	- Add the **custom script extension** based on the script created previously
+
+4. Update your Linux VM deployment in Azure with the modified template
+
+5. Display the home page
