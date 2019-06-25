@@ -47,4 +47,8 @@ $ sudo make install
     - Authentication
     - Azure agent
 
-3. Start the installation of "apache2-dev" with **apt** in the background and use **tail** to display ongoing apt history log.
+3. Start the **loop** bellow in the background which will add new events in the *system journal* using **logger**. Quickly after starting it, use **tail** to display ongoing system events.
+
+```Bash
+$ for i in {1..10}; do logger "Your time will expire in $((-$(($i - 10)))) seconds"; sleep 1; done
+```

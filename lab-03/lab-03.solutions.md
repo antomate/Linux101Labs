@@ -88,6 +88,6 @@ $ tail /var/log/waagent.log
 3. Solution
 
 ```Bash
-$ sudo nohup apt install apache2-dev &
-$ tail -f /var/log/apt/history.log
+$ for i in {1..10}; do logger "Your time will expire in $((-$(($i - 10)))) seconds"; sleep 1; done &
+$ tail -f /var/log/syslog
 ```
