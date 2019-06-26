@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "scriptUri": {
+            "value": "https://mystorageaccount.blob.core.windows.net/mycontainer/webserver.sh"
+        },
+        "StorageAccountName": {
+            "value": "mystorageaccount"
+        },
+        "StorageAccountKey": {
+            "value": "TmJK/1N3AbAZ3q/+hOXoi/l73zOqsaxXDhqa9Y83/v5UpXQp2DQIBuv2Tifp60cE/OaHsJZmQZ7teQfczQj8hg=="
+        },
+        "commandToExecute": {
+            "value": "sh webserver.sh"
+        }
+    }
+}

@@ -1,0 +1,55 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "scriptUri": {
+            "type": "string",
+            "metadata": {
+                "description": "URI where the script is located."
+            }
+        },
+        "StorageAccountName": {
+            "type": "string",
+            "metadata": {
+                "description": "The Storage account name in which the script is located."
+            }
+        },
+        "StorageAccountKey": {
+            "type": "string",
+            "metadata": {
+                "description": "The Storage account key in which the script is located."
+            }
+        },
+        "commandToExecute": {
+            "type": "string",
+            "metadata": {
+                "description": "The command to execute."
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "name": "[concat(variables('vmName'),'/installcustomscript')]",
+            "apiVersion": "2015-06-15",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+            ],
+            "properties": {
+                "publisher": "Microsoft.Azure.Extensions",
+                "type": "CustomScript",
+                "typeHandlerVersion": "2.0",
+                "autoUpgradeMinorVersion": true,
+                "protectedSettings": {
+                    "commandToExecute": "[parameters('commandToExecute')]",
+                    "storageAccountName": "[parameters('StorageAccountName')]",
+                    "storageAccountKey": "[parameters('StorageAccountKey')]",
+                    "fileUris": [
+                        "[parameters('scriptUri')]"
+                    ]
+                }
+            }
+        }
+    ]
+}
