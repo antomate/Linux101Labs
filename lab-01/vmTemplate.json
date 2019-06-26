@@ -232,7 +232,7 @@
                         },
                         {
                             "name": "[concat(variables('vmName'), '_DataDisk2')]",
-                            "diskSizeGB": "[variables('dataDisk1Size')]",
+                            "diskSizeGB": "[variables('dataDisk2Size')]",
                             "lun": 1,
                             "caching": "None",
                             "createOption": "Empty"
