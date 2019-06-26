@@ -4,10 +4,8 @@ The purpose of this lab is to work in team of two ro three people and achieve th
 
 1. Develop a script to perform the following actions :
 	- Install Ngnix
-	- Create e new user
-	- Modify the servoce configuration for Ngnix to run as the new user
-	- Restart Ngnix to apply the new configuration
 	- Download a custom home page to replace the default one
+	- Make sure port 80 is allowed in inbound on guest Firewall
 
 2. Upload the script to a Storage Account within a container with public access
 3.  Modify the template of the VM deployed in **lab-02** to :
