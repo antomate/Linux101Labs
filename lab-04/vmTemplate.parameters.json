@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "scriptUri": {
-            "value": "https://mystorageaccount.blob.core.windows.net/mycontainer/webserver.sh"
+            "value": "https://<mystorageaccount>.blob.core.windows.net/scripts/webserver.sh"
         },
         "StorageAccountName": {
-            "value": "mystorageaccount"
+            "value": "<mystorageaccount name>"
         },
         "StorageAccountKey": {
-            "value": "TmJK/1N3AbAZ3q/+hOXoi/l73zOqsaxXDhqa9Y83/v5UpXQp2DQIBuv2Tifp60cE/OaHsJZmQZ7teQfczQj8hg=="
+            "value": "<mystorageaccount key>"
         },
         "commandToExecute": {
             "value": "sh webserver.sh"
