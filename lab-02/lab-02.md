@@ -18,7 +18,7 @@ Use the SSH connection string to connect to the VM and confirm when prompted to 
 
 2. Declare physical volumes for devices "sdc" and "sdd" using **pvcreate**, then create a volume group "vg1" from those two devices suing **vgcreate**. Finally use **lvcreate** to create two logical volume from the "vg1" volume group, "lv1" of 30Go and "lv2" of 5Go.
 
-3. Format the two new volumes "lv1" and "lv2" in "ext4" using **mkfs**, then show volumes informarion using **df**.
+3. Format the two new volumes "lv1" and "lv2" in "ext4" using **mkfs**.
 
 4. Create two folders "data1" and "data2" at the root of the filesystem, then mount respectively "lv1" and "lv2" to those mounting points using **mount**. Finally show volumes informarion using **df** and create two new entries in **fstab** to peristently mount "data1" and "data2".
 
