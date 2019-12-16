@@ -23,7 +23,7 @@ Solution
 $ ssh adminuser<YourIndex>@linux101Lab01<YourIndex>.westeurope.cloudapp.azure.com
 ```
 
-## Create logical volumes, format and mount pesistently
+## Create logical volumes, format and mount persistently
 
 1. Solution
 
