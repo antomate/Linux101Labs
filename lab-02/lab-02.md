@@ -12,7 +12,7 @@ This lab focus on deploying a Linux VM in Azure based on the temlate previously 
 
 Use the SSH connection string to connect to the VM and confirm when prompted to add your VM fingerprint to the known hosts.
 
-## Create logical volumes, format and mount pesistently
+## Create logical volumes, format and mount persistently
 
 1. List the available volumes using **lsblk** and notice "sdc" and "sdd" are raw disk with no partitions.
 
