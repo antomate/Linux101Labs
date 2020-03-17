@@ -291,6 +291,7 @@ $ rm pkg*
 * Linux has a standard hierarchy, BUT with lots of history and exceptions (ex: /var/run kept for retro-compatibility)
 * Mount points can also map to an image file (loopback device) or file/folder (bind-mounts)
 * Persistent mount points configuration: **/etc/fstab**
+
 ![fstab](src/fstab.png)
 
 #### Commands
