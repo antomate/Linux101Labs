@@ -3,27 +3,28 @@
 COMMAND | DESCRIPTION | EXEMPLE
 --- | --- | ---
 pwd | Show current directory (present working directory) | pwd
-cd | Change directory (‘~’ or empty for home, ‘..’ for parent, ‘-’ for previous) | cd ~
-ls | List files (‘-a’ for all, ‘-R’ for recursive, ‘-l’ for permissions) | ls -al
-mv | Move or rename file | mv cool.txt pascool.tx
-cp | Copy files (or directory with ‘-R’ parameter) | cp pascool.txt cool.txt
-find | Locate files and directories based on complex queries (name, perm, regex…) | find /home/ -name "cool*"
 mkdir | Create directory | mkdir cooldir
 rmdir | Delete directory | rmdir cooldir
-rm | Delete file (or directory with ‘-R’ parameter) | rm -R cooldir
+cd | Change directory (‘~’ or empty for home, ‘..’ for parent, ‘-’ for previous) | cd cooldir
 touch | Update file’s last modified metadata (used generally to create empty files) | touch cool.txt
 chmod | Change permissions of a file or directory | chmod 755 cool.txt
 chown | Change user ownership of a file or directory | chown root cool.txt
 chgrp | Change group ownership of a file or directory (chown can be used as well) | chgrp root cool.txt
-gzip | Compress files and directories (‘bzip2’ and ‘xz’ have higher compression rate) | gzip cool.tar
-gunzip | De-compress ‘*.gz’ archives (‘bunzip2’ for ‘*.bz2’ archives) | 
-tar | Create archives (uncompressed by default .tar but can be compressed to .tar.gz) | tar -xzf cool.tar.gz
+mv | Move or rename file | mv cool.txt pascool.tx
+cp | Copy files (or directory with ‘-R’ parameter) | cp pascool.txt cool.txt
+ls | List files (‘-a’ for all, ‘-R’ for recursive, ‘-l’ for permissions) | ls -al
+find | Locate files and directories based on complex queries (name, perm, regex…) | find /home/ -name "cool*"
+tar | Create or extract archives (uncompressed by default .tar but can be compressed to .tar.gz) | tar -cf cool.tar cool.txt pascoo.txt
+gzip | Compress files and directories ('-d' can be used for decompress. ‘bzip2’ and ‘xz’ have higher compression rate) | gzip cool.tar
+rm | Delete file (or directory with recursive ‘-R’ parameter) | rm -R cooldir
 
+======================================
 
 ## DAILY COMMANDS
 
 COMMAND | DESCRIPTION | EXEMPLE
 --- | --- | ---
+uname | Show system and kernel version information ( '-a' will show ditrib info while -r' will show kernel info) | uname -a
 man | Query “Manual pages” (‘-f’ to list dedicated pages on a topic, ‘-k’ to list all pages with reference to a topic) | man -f sudo
 info | Query “GNU info pages” | info sudo
 echo | Display a line of text | echo "hello world"
